@@ -23,6 +23,20 @@ app.get ( '/api/vehicles', function (req, res) {
     });
 });
 
+app.get('/api/vechicle', () => {
+    const condition = 'Coupe'; 
+
+    const getQueryString = 'SELECT * FROM vehicle WHERE carId = 2'
+
+    connection.query(getQueryString, (err, results) => {
+        if (err) {
+            res.status(400).send(err);
+        } else {
+            res.status(200).json({results: results}); 
+        }
+    }); 
+})
+
 app.post('/api/vehicles', (req, res) => {
     db.Vehicle.insertOne({
         "year": 2018, 

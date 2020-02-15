@@ -6,7 +6,7 @@
   "scripts": {
     "seed": "node server/db/mongo/seed.js",
     "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/index.js"
+    "server-dev": "nodemon server/indexPS.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,11 +16,13 @@
     "dotenv": "^8.2.0",
     "eslint-config-airbnb": "^18.0.1",
     "express": "^4.17.1",
-    "knex": "^0.20.8",
+    "faker": "^4.1.0",
+    "knex": "^0.20.9",
     "lodash": "^4.17.15",
     "mongoose": "^5.8.9",
     "nodemon": "^2.0.2",
-    "pg": "^7.17.1",
+    "pg": "^7.18.1",
+    "pg-promise": "^10.4.3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
