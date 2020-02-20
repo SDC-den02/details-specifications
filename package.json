@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "seed-cars": "node --max-old-space-size=5096 database/seeds/cars.js",
     "seed": "node server/db/mongo/seed.js",
     "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/indexPS.js"
+    "server-dev": "nodemon server/indexMG.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +21,8 @@
     "knex": "^0.20.9",
     "lodash": "^4.17.15",
     "mongoose": "^5.8.9",
+    "neo4j": "^2.0.0-RC2",
+    "neo4j-driver": "^4.0.1",
     "nodemon": "^2.0.2",
     "pg": "^7.18.1",
     "pg-promise": "^10.4.3",

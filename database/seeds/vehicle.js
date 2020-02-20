@@ -35,10 +35,10 @@ exports.seed = async (knex) => {
   // Deletes ALL existing entries
   await knex('vehicle').del()
   let vehicleArray = []; 
-  let number = 10000000
+  let number = 10000000; 
   for(var i = 0; i < number; i++) {
     vehicleArray.push(createFakerCar())
-    if(i % 1000 === 0) {
+    if(i % 10000 === 0) {
       await knex('vehicle').insert(vehicleArray); 
       vehicleArray = []; 
       if(i % 100000 === 0) {
