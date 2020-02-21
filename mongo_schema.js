@@ -108,3 +108,53 @@ db.specsDimeb.insert({
   "ext_h": 'Exterior height: 1,590mm (62.6")',
   "ext_l": 'Exterior length: 4,389mm (172.8")'
 })
+
+// db.vehicles.find().limit(3)
+
+db.vehicles.aggregate([
+  { $limit : 1 },
+  {
+      $lookup:{
+          from: "convenience",
+          localField : "convenienceid",
+          foreignField : "id",
+          as : "convenience"
+      }
+  },
+  {  
+      $lookup:{
+        from: "entretainment",
+        localField : "entid",
+        foreignField : "id",
+        as : "entretainment"
+      }
+
+  },
+  {
+      $lookup:{
+        from: "offRoad",
+        localField : "offroadid",
+        foreignField : "id",
+        as : "offRoad"
+      }
+  },
+  {
+      $lookup:{
+        from: "seatTrim",
+        localField : "seattrimid",
+        foreignField : "id",
+        as : "seattrim"
+      }
+  },
+  {
+    $lookup:{
+      from: "specsDimeb",
+      localField : "specsdimebid",
+      foreignField : "id",
+      as : "specsdimeb"
+    }
+  }
+], function (err, docs){
+  res.json(docs);
+}).pretty()
+

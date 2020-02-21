@@ -1,10 +1,10 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const express = require ('express');
-const app = express();
 const cors = require('cors');
+const app = express()
 const port = process.env.PORT || 3080;
-
+const Vehicle = require('./database/mongo/vehicle.js'); 
 
 app.use(express.static(__dirname + '/../client/dist'))
 app.use(express.json());
@@ -25,12 +25,54 @@ db.once('open', () => {
 });
 
 
-app.get ( '/api/vehicles', function (req, res) {
-  // query to retrieve all documents in the vehicle collection
-  Vehicle.find( {_id: '5e3b48baa24e4bf2e8ed6971'}, function (err, docs){
-      res.json(docs);
-  });
-});
+app.get ( '/api/vehicles', (req, res) => {
+  Vehicle.aggregate([
+    { $limit : 1 },
+    {
+        $lookup:{
+            from: "convenience",
+            localField : "convenienceid",
+            foreignField : "id",
+            as : "convenience"
+        }
+    },
+    {  
+        $lookup:{
+          from: "entretainment",
+          localField : "entid",
+          foreignField : "id",
+          as : "entretainment"
+        }
+  
+    },
+    {
+        $lookup:{
+          from: "offRoad",
+          localField : "offroadid",
+          foreignField : "id",
+          as : "offRoad"
+        }
+    },
+    {
+        $lookup:{
+          from: "seatTrim",
+          localField : "seattrimid",
+          foreignField : "id",
+          as : "seattrim"
+        }
+    },
+    {
+      $lookup:{
+        from: "specsDimeb",
+        localField : "specsdimebid",
+        foreignField : "id",
+        as : "specsdimeb"
+      }
+    }
+  ], function (err, docs){
+    res.json(docs);
+  })
+}); 
 
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
