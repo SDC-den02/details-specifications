@@ -25,7 +25,7 @@ db.once('open', () => {
 });
 
 
-app.get ( '/api/vehicles', (req, res) => {
+app.get ('/api/vehicles', (req, res) => {
   Vehicle.aggregate([
     { $limit : 1 },
     {
@@ -33,7 +33,7 @@ app.get ( '/api/vehicles', (req, res) => {
             from: "convenience",
             localField : "convenienceid",
             foreignField : "id",
-            as : "convenience"
+            as : "convenienceid"
         }
     },
     {  
@@ -41,7 +41,7 @@ app.get ( '/api/vehicles', (req, res) => {
           from: "entretainment",
           localField : "entid",
           foreignField : "id",
-          as : "entretainment"
+          as : "entid"
         }
   
     },
@@ -50,7 +50,7 @@ app.get ( '/api/vehicles', (req, res) => {
           from: "offRoad",
           localField : "offroadid",
           foreignField : "id",
-          as : "offRoad"
+          as : "offroadid"
         }
     },
     {
@@ -58,7 +58,7 @@ app.get ( '/api/vehicles', (req, res) => {
           from: "seatTrim",
           localField : "seattrimid",
           foreignField : "id",
-          as : "seattrim"
+          as : "seattrimid"
         }
     },
     {
@@ -66,7 +66,7 @@ app.get ( '/api/vehicles', (req, res) => {
         from: "specsDimeb",
         localField : "specsdimebid",
         foreignField : "id",
-        as : "specsdimeb"
+        as : "specsdimebid"
       }
     }
   ], function (err, docs){

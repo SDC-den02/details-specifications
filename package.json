@@ -7,7 +7,7 @@
     "seed-cars": "node --max-old-space-size=5096 database/seeds/cars.js",
     "seed": "node server/db/mongo/seed.js",
     "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/indexMG.js"
+    "server-dev": "nodemon server/indexPS.js"
   },
   "author": "",
   "license": "ISC",
